@@ -13,6 +13,15 @@ Toolbox and trackers for object pose-estimation. Based on the work [CosyPose](ht
 
 # Installation
 
+## Using poetry
+```
+git clone --recurse-submodules https://github.com/agimus-project/happypose.git
+conda env create -f env_cpu.yml # For CPU only
+conda activate happypose_cpu
+poetry install --with dev -E render
+```
+
+
 This installation procedure will be curated.
 
 ```

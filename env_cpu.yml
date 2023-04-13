@@ -1,0 +1,13 @@
+name: happypose_cpu
+channels:
+  - pytorch
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python==3.10.*
+  - mamba
+  - poetry
+  - pytorch::cpuonly
+  - pytorch::pytorch==2.0.0
+  - pytorch::torchvision==0.15.0
+  - pytorch::torchaudio==2.0.0

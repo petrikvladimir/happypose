@@ -27,7 +27,11 @@ version = "0.1.0"
 panda3d = {optional = true, version = "=1.10.13"}
 pin = "^2.6.17"
 pybullet = {optional = true, version = "^3.2.5"}
-python = "^3.8"
+python = "^3.10"
+transforms3d = "^0.4.1"
+pandas = "^2.0.0"
+webdataset = "^0.2.48"
+omegaconf = "^2.3.0"
 
 
 [tool.poetry.extras]
