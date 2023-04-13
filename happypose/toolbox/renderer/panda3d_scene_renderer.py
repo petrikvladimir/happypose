@@ -80,20 +80,20 @@ class App(ShowBase):
             "audio-library-name null\n"
             "model-cache-dir\n",
         )
-        assert "CUDA_VISIBLE_DEVICES" in os.environ
-        devices = os.environ["CUDA_VISIBLE_DEVICES"].split(",")
-        assert len(devices) == 1
-        if "EGL_VISIBLE_DEVICES" not in os.environ:
-            out = subprocess.check_output(
-                ["nvidia-smi", "--id=" + str(devices[0]), "-q", "--xml-format"]
-            )
-            tree = ET.fromstring(out)
-            gpu = tree.findall("gpu")[0]
-            assert gpu is not None
-            minor_number_el = gpu.find("minor_number")
-            assert minor_number_el is not None
-            dev_id = minor_number_el.text
-            os.environ["EGL_VISIBLE_DEVICES"] = str(dev_id)
+        # assert "CUDA_VISIBLE_DEVICES" in os.environ
+        # devices = os.environ["CUDA_VISIBLE_DEVICES"].split(",")
+        # assert len(devices) == 1
+        # if "EGL_VISIBLE_DEVICES" not in os.environ:
+        #     out = subprocess.check_output(
+        #         ["nvidia-smi", "--id=" + str(devices[0]), "-q", "--xml-format"]
+        #     )
+        #     tree = ET.fromstring(out)
+        #     gpu = tree.findall("gpu")[0]
+        #     assert gpu is not None
+        #     minor_number_el = gpu.find("minor_number")
+        #     assert minor_number_el is not None
+        #     dev_id = minor_number_el.text
+        #     os.environ["EGL_VISIBLE_DEVICES"] = str(dev_id)
 
         super().__init__(windowType="offscreen")
         self.render.set_shader_auto()
@@ -332,7 +332,7 @@ class Panda3dSceneRenderer:
                 h, w = rendering_n.depth.shape[:2]
                 binary_mask = np.zeros((h, w), dtype=np.bool_)
                 binary_mask[rendering_n.depth[..., 0] > 0] = 1
-                rendering.binary_mask = binary_mask
+                rendering_n.binary_mask = binary_mask
 
         render_time = time.time() - start
 

@@ -1,6 +1,7 @@
 import unittest
 from pathlib import Path
 import numpy as np
+from numpy.testing import assert_equal
 
 from happypose.toolbox.datasets.object_dataset import RigidObjectDataset, RigidObject
 from happypose.toolbox.lib3d.transform import Transform
@@ -59,14 +60,9 @@ class TestRendererPanda3D(unittest.TestCase):
 
         self.assertEqual(len(renderings), 1)
         rgb = renderings[0].rgb
-        # something is rendered
-        self.assertGreater(renderings[0].rgb.sum(), 0)
-        # center is more-a-less red, todo: change ambient light to zero to have red
-        center_pixel = rgb[rgb.shape[0] // 2, rgb.shape[1] // 2]
-        self.assertGreater(center_pixel[0], 250)
-        self.assertLess(center_pixel[1], 5)
-        self.assertLess(center_pixel[2], 5)
-        # todo corner is black
+
+        assert_equal(rgb[rgb.shape[0] // 2, rgb.shape[1] // 2], (255, 0, 0))
+        assert_equal(rgb[0, 0], (0, 0, 0))
 
 
 if __name__ == "__main__":
